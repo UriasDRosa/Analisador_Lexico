@@ -7,6 +7,10 @@
   font-family: "Playball", cursive;
   font-family: "Roboto Mono", monospace;
 }
+body{
+  
+  overflow-x: hidden;
+}
 
 main.container {
   display: flex;
@@ -58,7 +62,9 @@ main.container {
   border-radius: 1rem;
   border: 1px solid gray;
 }
-
+.destacado {
+  background-color: yellow;
+}
 .btn-remover {
   border: none;
   background-color: red;
@@ -72,9 +78,39 @@ main.container {
   flex: 3;
   padding: 10px;
 }
+
+#checar{
+  padding: 0.3rem;
+  margin: 0.5rem 0;
+}
 section.content {
   flex: 6;
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  padding: 0.9rem;
+  border: 1px solid rgb(156, 156, 156);
+}
+
+td {
+  padding: 0.5rem;
+  border: 1px solid rgb(156, 156, 156);
+}
+
+tr {
+  font-weight: bold;
+  border: 1px solid rgb(156, 156, 156);
+}
+
+td + td, th + th {
+  border-left: 1px solid rgb(156, 156, 156);
+}
+
 
 footer {
   position: fixed;
@@ -86,6 +122,6 @@ footer {
   background-color: black;
   color: white;
   font-size: 1rem;
-  padding: 0.5rem;
+  padding: 0.2rem;
   text-align: center;
 }
