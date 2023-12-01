@@ -212,16 +212,14 @@ function checarPalavra(event) {
           letraAtual = letraAtual.toUpperCase();
           let linha = corpo.querySelector(`.td-${lastState}`);
           let cellLinha = linha.getElementsByTagName(`td-${letraAtual}`);
-        
 
-          if(cellLinha != ""){
-            console.log("aeee")
-            vetPalavra.push("*")
+          if (cellLinha != "") {
+            console.log("aeee");
+            vetPalavra.push("*");
           }
-          
         }
-        if(vetPalavra.length == textoDigitado.length){
-          window.alert("Palavra encontrada!")
+        if (vetPalavra.length == textoDigitado.length) {
+          window.alert("Palavra encontrada!");
         }
       } else {
         window.alert("Palavra não encontrada");
@@ -232,8 +230,41 @@ function checarPalavra(event) {
     }
   }
 }
-document.getElementById("checar").addEventListener("keyup", checarPalavra);
 
+function pintarUltimaLetra(palavra) {
+  const corpo = document.getElementById("tabela");
+  const cells = corpo.getElementsByTagName("td");
+  
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].classList.remove("destacado");
+  }
+
+  const ultimaLetra = palavra.charAt(palavra.length - 1).toUpperCase();
+  if (alfabetoNumber.hasOwnProperty(ultimaLetra)) {
+    const linha = corpo.getElementsByClassName(`q${palavra.length - 1}`);
+    const coluna = corpo.getElementsByClassName(`td-${ultimaLetra}`);
+    
+    for (let j = 1; j < linha.length; j++) {
+      linha[j].classList.add("destacado");
+    }
+    
+    for (let j = 0; j < coluna.length; j++) {
+      coluna[j].classList.add("destacado");
+    }
+  }
+}
+
+document.getElementById("checar").addEventListener("input", function(event) {
+  let palavra = event.target.value.trim();
+  pintarUltimaLetra(palavra);
+});
+
+document.getElementById("checar").addEventListener("keyup", function(event) {
+  if (event.key === 'Backspace' || event.code === 'Backspace') {
+    let palavra = event.target.value.trim();
+    pintarUltimaLetra(palavra);
+  }
+});
 function exibirPalavras() {
   const palavrasDigitadas = document.getElementById("palavras-digitadas");
   palavrasDigitadas.innerHTML = "";
